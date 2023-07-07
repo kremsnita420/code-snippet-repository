@@ -47,7 +47,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 					<textarea
 						value={post.snippet}
 						onChange={(e) => setPost({ ...post, snippet: e.target.value })}
-						placeholder='Write your post here'
+						placeholder='Write your code here'
 						required
 						className='form_textarea'
 					/>
@@ -56,15 +56,13 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 				<label>
 					<span className='text-base font-semibold text-gray-700 font-satoshi'>
 						Coding language{' '}
-						<span className='font-normal'>
-							(#product, #webdevelopment, #idea, etc.)
-						</span>
+						<span className='font-normal'>(javascript, php, python, ...)</span>
 					</span>
 					<input
 						value={post.tag}
 						onChange={(e) => setPost({ ...post, tag: e.target.value })}
 						type='text'
-						placeholder='#Tag'
+						placeholder='Select language'
 						required
 						className='form_input'
 					/>
