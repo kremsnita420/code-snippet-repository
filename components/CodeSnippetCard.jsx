@@ -63,7 +63,7 @@ const CodeSnippetCard = ({
 				{/* <p className='my-4 text-sm text-gray-700 font-satoshi'>{post.snippet}</p> */}
 
 				<p
-					className='text-sm cursor-pointer font-inter blue_gradient'
+					className='mt-2 text-sm cursor-pointer font-inter blue_gradient'
 					onClick={() => handleTagClick && handleTagClick(post.tag)}>
 					#{post.tag}
 				</p>
@@ -90,17 +90,15 @@ const CodeSnippetCard = ({
 				</button>
 			</div>
 			{showModal ? (
-				<div
-					className='w-[100dvw] h-[100dvh] bg-blue-500/20 fixed top-0 left-0 right-0 z-10'
-					onClick={() => setShowModal(false)}>
-					<div className='w-[fit-content] fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>
+				<div className='w-[100dvw] h-[100dvh] bg-black/60 fixed top-0 left-0 right-0 z-10'>
+					<div className='w-[95vw] md:mx-5 md:max-w-7xl fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>
 						<button
-							className='absolute leading-none top-[-40px] right-2 p-2 w-8 h-8 black_btn'
+							className='absolute leading-none top-[-40px] right-2 w-8 h-8 black_btn'
 							type='button'
 							onClick={() => setShowModal(false)}>
 							X
 						</button>
-						<div className='z-20'>
+						<div className='z-20 text-xs'>
 							<div
 								className='absolute top-0 z-20 transition-opacity translate-y-2 opacity-50 cursor-pointer hover:opacity-100 right-2 copy_btn'
 								title='Copy code to clipboard'
@@ -119,7 +117,8 @@ const CodeSnippetCard = ({
 							<SyntaxHighlighter
 								language={post.tag}
 								style={codepenEmbed}
-								showLineNumbers>
+								showLineNumbers
+								wrapLines>
 								{post.snippet}
 							</SyntaxHighlighter>
 						</div>

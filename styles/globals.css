@@ -74,7 +74,7 @@
 /* Tailwind Styles */
 
 .app {
-	@apply relative z-10 flex flex-col items-center justify-center px-6 mx-auto max-w-7xl sm:px-16;
+	@apply relative z-10 flex flex-col items-center justify-center px-6 mx-auto max-w-[1280px] sm:px-16;
 }
 
 .black_btn {
@@ -86,7 +86,7 @@
 }
 
 .head_text {
-	@apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+	@apply mt-5 text-4xl font-extrabold leading-[1.15] text-black sm:text-6xl;
 }
 
 .orange_gradient {
@@ -102,7 +102,7 @@
 }
 
 .desc {
-	@apply max-w-2xl mt-5 text-lg text-gray-600 sm:text-xl;
+	@apply max-w-2xl mt-5 text-base text-gray-600 md:text-xl;
 }
 
 .search_input {
@@ -119,7 +119,7 @@
 
 .snippets_layout {
 	/* @apply py-8 space-y-6 sm:columns-2 sm:gap-6 xl:columns-3; */
-	@apply grid gap-6 lg:grid-cols-2;
+	@apply grid w-full grid-cols-1 gap-6 mb-16 md:grid-cols-2 lg:grid-cols-3;
 }
 
 /* Feed Component */
@@ -138,7 +138,7 @@
 
 /* Nav Component */
 .logo_text {
-	@apply text-lg font-semibold tracking-wide text-black max-sm:hidden font-satoshi;
+	@apply text-xl font-semibold tracking-wide text-black max-md:hidden font-satoshi;
 }
 
 .dropdown {
@@ -151,7 +151,7 @@
 
 /* SnippetCard Component */
 .snippet_card {
-	@apply flex flex-col flex-1 p-6 pb-4 border border-gray-300 rounded-lg break-inside-avoid bg-white/20 bg-clip-padding backdrop-blur-lg backdrop-filter max-w-7xl;
+	@apply flex flex-col flex-1 p-6 pb-4 border border-gray-300 rounded-lg break-inside-avoid bg-white/20 bg-clip-padding backdrop-blur-lg backdrop-filter;
 }
 
 .flex_center {

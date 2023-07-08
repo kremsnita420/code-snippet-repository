@@ -22,12 +22,13 @@ const Nav = () => {
 		<nav className='w-full pt-3 mb-16 flex_between'>
 			<Link href='/' className='flex gap-2 flex_center'>
 				<Image
-					src='/assets/images/logo.svg'
+					src='/assets/icons/coding.png'
 					alt='logo'
 					width={30}
 					height={30}
-					className='object-contain'
+					className='object-contain md:w-[60px]'
 				/>
+
 				<p className='logo_text'>SnippetLand</p>
 			</Link>
 

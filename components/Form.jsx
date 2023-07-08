@@ -1,10 +1,11 @@
 import Link from 'next/link';
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+	const codeLangs = ['javascript', 'php'];
 	return (
 		<section className='flex-col w-full max-w-full flex_start'>
 			<h1 className='text-left head_text'>
-				<span className='blue_gradient'>{type} Post</span>
+				<span className='blue_gradient'>{type} Snippet of Code</span>
 			</h1>
 			<p className='max-w-md text-left desc'>
 				{type} and share amazing code snippets with the world.
@@ -58,15 +59,24 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 						Coding language{' '}
 						<span className='font-normal'>(javascript, php, python, ...)</span>
 					</span>
-					<input
+					{/* <input
 						value={post.tag}
 						onChange={(e) => setPost({ ...post, tag: e.target.value })}
 						type='text'
 						placeholder='Select language'
 						required
 						className='form_input'
-					/>
+					/> */}
 				</label>
+				<select
+					className='bg-white form_input'
+					value={post.tag}
+					onChange={(e) => setPost({ ...post, tag: e.target.value })}>
+					{/* Create array of options and map them */}
+					{codeLangs.map((lang, i) => (
+						<option key={`lang-${i}`}>{lang}</option>
+					))}
+				</select>
 
 				<div className='gap-4 mx-3 mb-5 flex_end'>
 					<Link href='/' className='text-sm text-gray-500'>

@@ -69,10 +69,10 @@ const Feed = () => {
 
 	return (
 		<section className='feed'>
-			<form className='relative w-full flex_center'>
+			<form className='relative w-full max-w-2xl flex_center'>
 				<input
 					type='text'
-					placeholder='Search for a tag or a username'
+					placeholder='Search by coding language or a username'
 					value={searchText}
 					onChange={handleSearchChange}
 					required
