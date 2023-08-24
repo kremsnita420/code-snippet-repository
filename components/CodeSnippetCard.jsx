@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import { codepenEmbed } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { monokaiSublime } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const CodeSnippetCard = ({
 	post,
@@ -116,7 +116,7 @@ const CodeSnippetCard = ({
 							</div>
 							<SyntaxHighlighter
 								language={post.tag}
-								style={codepenEmbed}
+								style={monokaiSublime}
 								showLineNumbers
 								wrapLines>
 								{post.snippet}
