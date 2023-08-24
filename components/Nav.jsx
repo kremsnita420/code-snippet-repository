@@ -10,6 +10,7 @@ const Nav = () => {
 
 	const [providers, setProviders] = useState(null);
 	const [toggleDropdown, setToggleDropdown] = useState(false);
+	const [toggleSignIn, setToggleSignIn] = useState(false);
 
 	useEffect(() => {
 		(async () => {
@@ -61,20 +62,28 @@ const Nav = () => {
 						</Link>
 					</div>
 				) : (
-					<>
-						{providers &&
-							Object.values(providers).map((provider) => (
-								<button
-									type='button'
-									key={provider.name}
-									onClick={() => {
-										signIn(provider.id);
-									}}
-									className='black_btn'>
-									Sign in
-								</button>
-							))}
-					</>
+					<div className='flex flex-col items-center justify-center p-2 border border-black'>
+						<button
+							onClick={() => setToggleDropdown(!toggleDropdown)}
+							className=' black_btn'>
+							Sign in with
+						</button>
+						<span className='absolute top-16'>
+							{providers &&
+								toggleDropdown &&
+								Object.values(providers).map((provider) => (
+									<button
+										type='button'
+										key={provider.name}
+										onClick={() => {
+											signIn(provider.id);
+										}}
+										className='m-2 black_btn'>
+										{provider.name}
+									</button>
+								))}
+						</span>
+					</div>
 				)}
 			</div>
 
@@ -118,20 +127,28 @@ const Nav = () => {
 						)}
 					</div>
 				) : (
-					<>
-						{providers &&
-							Object.values(providers).map((provider) => (
-								<button
-									type='button'
-									key={provider.name}
-									onClick={() => {
-										signIn(provider.id);
-									}}
-									className='black_btn'>
-									Sign in
-								</button>
-							))}
-					</>
+					<div>
+						<button
+							onClick={() => setToggleDropdown(!toggleDropdown)}
+							className=' black_btn'>
+							Sign in with
+						</button>
+						<div className='absolute top-12'>
+							{providers &&
+								toggleDropdown &&
+								Object.values(providers).map((provider) => (
+									<button
+										type='button'
+										key={provider.name}
+										onClick={() => {
+											signIn(provider.id);
+										}}
+										className='block mx-auto mb-2 black_btn'>
+										{provider.name}
+									</button>
+								))}
+						</div>
+					</div>
 				)}
 			</div>
 		</nav>
