@@ -20,20 +20,26 @@ const Nav = () => {
 
 	return (
 		<nav className='w-full pt-3 mb-16 flex_between'>
-			<Link href='/' className='flex gap-2 flex_center'>
-				<Image
-					src='/assets/icons/coding.png'
-					alt='logo'
-					width={30}
-					height={30}
-					className='object-contain md:w-[60px]'
-				/>
+			<Link href='/' className='flex gap-2 font-bold flex_center'>
+				<svg
+					xmlns='http://www.w3.org/2000/svg'
+					fill='none'
+					viewBox='0 0 24 24'
+					strokeWidth={2.5}
+					stroke='currentColor'
+					className='w-8 h-8 font-bold '>
+					<path
+						strokeLinecap='round'
+						strokeLinejoin='round'
+						d='M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5'
+					/>
+				</svg>
 
-				<p className='logo_text'>SnippetLand</p>
+				<p className='text-xl md:text-3xl orange_gradient'>SnippetLand</p>
 			</Link>
 
 			{/* Desktop Navigation */}
-			<div className='hidden sm:flex'>
+			<div className='hidden md:flex'>
 				{session?.user ? (
 					<div className='flex gap-3 md:gap-5'>
 						<Link href='/create-snippet' className='black_btn'>
@@ -73,7 +79,7 @@ const Nav = () => {
 			</div>
 
 			{/* Mobile Navigation */}
-			<div className='relative flex sm:hidden'>
+			<div className='relative flex md:hidden'>
 				{session?.user ? (
 					<div className='flex'>
 						<Image

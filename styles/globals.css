@@ -9,8 +9,8 @@
 */
 
 .main {
-	width: 100vw;
-	min-height: 100vh;
+	width: 100dvw;
+	min-height: 100dvh;
 	position: fixed;
 	display: flex;
 	justify-content: center;
@@ -30,14 +30,14 @@
 
 .main:after {
 	content: '';
-	background-image: url('/assets/images/grid.svg');
+	background-image: url('/assets/images/hexagon.svg');
 	z-index: 1;
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	top: 0;
 	opacity: 0.4;
-	filter: invert(1);
+	filter: blur(4px);
 }
 
 .gradient {

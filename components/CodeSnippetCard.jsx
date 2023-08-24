@@ -58,12 +58,12 @@ const CodeSnippetCard = ({
 				</div>
 				<h2 className='my-2 text-lg font-bold font-satoshi'>{post.title}</h2>
 
-				<p className='text-sm font-inter'>{post.description}</p>
+				<p className='mb-2 text-sm font-inter'>{post.description}</p>
 
 				{/* <p className='my-4 text-sm text-gray-700 font-satoshi'>{post.snippet}</p> */}
 
 				<p
-					className='mt-2 text-sm cursor-pointer font-inter blue_gradient'
+					className='mt-auto text-sm cursor-pointer font-inter blue_gradient'
 					onClick={() => handleTagClick && handleTagClick(post.tag)}>
 					#{post.tag}
 				</p>
@@ -83,7 +83,7 @@ const CodeSnippetCard = ({
 					</div>
 				)}
 				<button
-					className='mt-5 black_btn'
+					className='mt-2 black_btn'
 					type='button'
 					onClick={() => setShowModal(true)}>
 					Show code
