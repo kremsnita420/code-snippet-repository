@@ -1,16 +1,20 @@
 'use client';
-
 import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-
-import Form from '@components/Form';
+import dynamic from 'next/dynamic';
+const Form = dynamic(() => import('@components/Form'), { ssr: false });
 
 const UpdateSnippet = () => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const snippetsId = searchParams.get('id');
 
-	const [post, setPost] = useState({ snippet: '', tag: '' });
+	const [post, setPost] = useState({
+		snippet: '',
+		tag: '',
+		title: '',
+		description: '',
+	});
 	const [submitting, setIsSubmitting] = useState(false);
 
 	useEffect(() => {
@@ -19,8 +23,8 @@ const UpdateSnippet = () => {
 			const data = await response.json();
 
 			setPost({
-				title: post.title,
-				description: post.description,
+				title: data.title,
+				description: data.description,
 				snippet: data.snippet,
 				tag: data.tag,
 			});
@@ -28,6 +32,12 @@ const UpdateSnippet = () => {
 
 		if (snippetsId) getSnippetDetails();
 	}, [snippetsId]);
+
+	const [isClient, setIsClient] = useState(false);
+
+	useEffect(() => {
+		setIsClient(true);
+	}, []);
 
 	const UpdateSnippet = async (e) => {
 		e.preventDefault();
@@ -57,13 +67,18 @@ const UpdateSnippet = () => {
 	};
 
 	return (
-		<Form
-			type='Edit'
-			post={post}
-			setPost={setPost}
-			submitting={submitting}
-			handleSubmit={UpdateSnippet}
-		/>
+		<>
+			{isClient && (
+				<Form
+					suppressHydrationWarning
+					type='Edit'
+					post={post}
+					setPost={setPost}
+					submitting={submitting}
+					handleSubmit={UpdateSnippet}
+				/>
+			)}
+		</>
 	);
 };
 

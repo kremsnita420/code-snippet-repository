@@ -16,7 +16,7 @@ export const GET = async (request, { params }) => {
 }
 
 export const PATCH = async (request, { params }) => {
-    const { snippet, tag } = await request.json();
+    const { snippet, tag, title, description } = await request.json();
 
     try {
         await connectToDB();

@@ -1,15 +1,17 @@
+'use client';
 import Link from 'next/link';
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
-	const codeLangs = ['javascript', 'php'];
+	const codeLangs = ['php', 'javascript', 'python', 'scss', 'css'];
+	console.log(post);
 	return (
-		<section className='flex-col w-full max-w-full flex_start'>
+		<div className='flex-col w-full max-w-full flex_start'>
 			<h1 className='text-left head_text'>
 				<span className='blue_gradient'>{type} Snippet of Code</span>
 			</h1>
-			<p className='max-w-md text-left desc'>
+			{/* <p className='max-w-md text-left desc'>
 				{type} and share amazing code snippets with the world.
-			</p>
+			</p> */}
 
 			<form
 				onSubmit={handleSubmit}
@@ -73,8 +75,11 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 					value={post.tag}
 					onChange={(e) => setPost({ ...post, tag: e.target.value })}>
 					{/* Create array of options and map them */}
+					<option defaultValue={post.tag}>{post.tag}</option>
 					{codeLangs.map((lang, i) => (
-						<option key={`lang-${i}`}>{lang}</option>
+						<option value={lang} key={`lang-${i}`}>
+							{lang}
+						</option>
 					))}
 				</select>
 
@@ -91,7 +96,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 					</button>
 				</div>
 			</form>
-		</section>
+		</div>
 	);
 };
 
