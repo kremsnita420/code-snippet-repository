@@ -62,7 +62,7 @@ const Nav = () => {
 						</Link>
 					</div>
 				) : (
-					<div className='flex flex-col items-center justify-center p-2 border border-black'>
+					<div className='flex flex-col items-center justify-center'>
 						<button
 							onClick={() => setToggleDropdown(!toggleDropdown)}
 							className=' black_btn'>
@@ -78,7 +78,7 @@ const Nav = () => {
 										onClick={() => {
 											signIn(provider.id);
 										}}
-										className='m-2 black_btn'>
+										className='block mx-auto mb-2 black_btn'>
 										{provider.name}
 									</button>
 								))}
@@ -127,7 +127,7 @@ const Nav = () => {
 						)}
 					</div>
 				) : (
-					<div>
+					<div className='flex flex-col items-center justify-center'>
 						<button
 							onClick={() => setToggleDropdown(!toggleDropdown)}
 							className=' black_btn'>
