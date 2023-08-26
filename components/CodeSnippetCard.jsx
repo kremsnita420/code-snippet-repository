@@ -138,7 +138,7 @@ const CodeSnippetCard = ({
 				<div className='w-[100dvw] h-[100dvh] bg-black/60 fixed top-0 left-0 right-0 z-10'>
 					<div className='w-[95vw] md:max-w-7xl fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>
 						<button
-							className='absolute leading-none top-[-40px] right-2 w-8 h-8 black_btn'
+							className='absolute leading-none top-[-40px] right-0 w-8 h-8 black_btn'
 							type='button'
 							onClick={() => setShowModal(false)}>
 							X
