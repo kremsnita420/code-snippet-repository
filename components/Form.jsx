@@ -3,15 +3,11 @@ import Link from 'next/link';
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 	const codeLangs = ['php', 'javascript', 'python', 'scss', 'css'];
-	console.log(post);
 	return (
 		<div className='flex-col w-full max-w-full flex_start'>
 			<h1 className='text-left head_text'>
 				<span className='blue_gradient'>{type} Snippet of Code</span>
 			</h1>
-			{/* <p className='max-w-md text-left desc'>
-				{type} and share amazing code snippets with the world.
-			</p> */}
 
 			<form
 				onSubmit={handleSubmit}
@@ -46,33 +42,27 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 					<span className='text-base font-semibold text-gray-700 font-satoshi'>
 						Your Code Snippet
 					</span>
-
-					<textarea
-						value={post.snippet}
-						onChange={(e) => setPost({ ...post, snippet: e.target.value })}
-						placeholder='Write your code here'
-						required
-						className='form_textarea'
-					/>
+					<pre>
+						<textarea
+							value={post.snippet}
+							onChange={(e) => setPost({ ...post, snippet: e.target.value })}
+							placeholder='Write your code here'
+							required
+							className='form_textarea'
+						/>
+					</pre>
 				</label>
 
 				<label>
 					<span className='text-base font-semibold text-gray-700 font-satoshi'>
-						Coding language{' '}
+						Coding language
 						<span className='font-normal'>(javascript, php, python, ...)</span>
 					</span>
-					{/* <input
-						value={post.tag}
-						onChange={(e) => setPost({ ...post, tag: e.target.value })}
-						type='text'
-						placeholder='Select language'
-						required
-						className='form_input'
-					/> */}
 				</label>
 				<select
 					className='bg-white form_input'
 					value={post.tag}
+					required
 					onChange={(e) => setPost({ ...post, tag: e.target.value })}>
 					{/* Create array of options and map them */}
 					<option defaultValue={post.tag}>{post.tag}</option>

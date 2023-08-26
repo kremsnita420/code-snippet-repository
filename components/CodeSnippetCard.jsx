@@ -2,9 +2,8 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
-import { usePathname, useRouter } from 'next/navigation';
-
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { monokaiSublime } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
@@ -16,12 +15,33 @@ const CodeSnippetCard = ({
 }) => {
 	const { data: session } = useSession();
 	const pathName = usePathname();
-	const router = useRouter();
+
 	const [showModal, setShowModal] = useState(false);
 	const [copied, setCopied] = useState('');
+	const likes = post.likes;
+	const list = post.whoLiked;
+	const user = session?.user.id;
+	const [like, setLike] = useState(likes);
+	const [likedList, setLikedList] = useState(list);
+
+	const handleAddLike = async () => {
+		setLikedList(
+			!post.whoLiked.includes(user) ? post.whoLiked.push(user) : post.whoLiked
+		);
+		setLike(like + 1);
+
+		const response = await fetch(`/api/snippet/${post._id}/likes`, {
+			method: 'PATCH',
+			body: JSON.stringify({
+				whoLiked: likedList,
+				likes: like + 1,
+			}),
+		});
+		return response;
+	};
 
 	const handleProfileClick = () => {
-		if (post.creator._id === session?.user.id) return router.push('/profile');
+		if (post.creator._id === user) return router.push('/profile');
 		router.push(`/profile/${post.creator._id}?name=${post.creator.username}`);
 	};
 
@@ -57,18 +77,43 @@ const CodeSnippetCard = ({
 					</div>
 				</div>
 				<h2 className='my-2 text-lg font-bold font-satoshi'>{post.title}</h2>
-
 				<p className='mb-2 text-sm font-inter'>{post.description}</p>
-
-				{/* <p className='my-4 text-sm text-gray-700 font-satoshi'>{post.snippet}</p> */}
-
 				<p
 					className='mt-auto text-sm cursor-pointer font-inter blue_gradient'
 					onClick={() => handleTagClick && handleTagClick(post.tag)}>
 					#{post.tag}
 				</p>
 
-				{session?.user.id === post.creator._id && pathName === '/profile' && (
+				{session && pathName === '/' ? (
+					<button
+						disabled={post.whoLiked.includes(user)}
+						onClick={handleAddLike}
+						className={`flex items-center justify-center ${
+							likedList ? 'cursor-default' : 'cursor-pointer'
+						} mx-auto`}>
+						Like
+						<Image
+							className={`mx-2`}
+							src='/assets/icons/heart-icon-full.svg'
+							alt='Like post icon'
+							width={18}
+							height={18}
+						/>
+						{like}
+					</button>
+				) : (
+					<button className='flex items-center justify-center mx-auto cursor-default'>
+						<Image
+							className={`mx-2`}
+							src='/assets/icons/heart-icon-full.svg'
+							alt='Like post icon'
+							width={18}
+							height={18}
+						/>
+						{like}
+					</button>
+				)}
+				{user === post.creator._id && pathName === '/profile' && (
 					<div className='gap-4 pt-3 mt-5 border-t border-gray-100 flex_center'>
 						<p
 							className='text-sm cursor-pointer font-inter green_gradient'
@@ -91,16 +136,16 @@ const CodeSnippetCard = ({
 			</div>
 			{showModal ? (
 				<div className='w-[100dvw] h-[100dvh] bg-black/60 fixed top-0 left-0 right-0 z-10'>
-					<div className='w-[95vw] md:mx-5 md:max-w-7xl fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>
+					<div className='w-[95vw] md:max-w-7xl fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]'>
 						<button
 							className='absolute leading-none top-[-40px] right-2 w-8 h-8 black_btn'
 							type='button'
 							onClick={() => setShowModal(false)}>
 							X
 						</button>
-						<div className='z-20 text-xs'>
+						<div className='z-20 text-xs md:text-base'>
 							<div
-								className='absolute top-0 z-20 transition-opacity translate-y-2 opacity-50 cursor-pointer hover:opacity-100 right-2 copy_btn'
+								className='absolute top-0 z-20 transition-opacity translate-y-2 opacity-50 cursor-pointer right-5 hover:opacity-100 copy_btn'
 								title='Copy code to clipboard'
 								onClick={handleCopy}>
 								<Image
@@ -117,6 +162,10 @@ const CodeSnippetCard = ({
 							<SyntaxHighlighter
 								language={post.tag}
 								style={monokaiSublime}
+								customStyle={{
+									height: '70vh',
+									margin: 'auto',
+								}}
 								showLineNumbers
 								wrapLines>
 								{post.snippet}

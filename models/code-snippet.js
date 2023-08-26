@@ -20,6 +20,13 @@ const SnippetSchema = new Schema({
   tag: {
     type: String,
     required: [true, 'Tag is required.'],
+  },
+  likes: {
+    type: Number
+  },
+  whoLiked: {
+    type: Schema.Types.Array,
+    version: Schema.Types.Number
   }
 });
 

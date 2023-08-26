@@ -11,7 +11,6 @@ const Nav = () => {
 	const [providers, setProviders] = useState(null);
 	const [toggleDropdown, setToggleDropdown] = useState(false);
 	const [toggleSignIn, setToggleSignIn] = useState(false);
-
 	useEffect(() => {
 		(async () => {
 			const res = await getProviders();
@@ -62,11 +61,11 @@ const Nav = () => {
 						</Link>
 					</div>
 				) : (
-					<div className='flex flex-col items-center justify-center'>
+					<div className='flex flex-col items-center justify-center bg-white'>
 						<button
 							onClick={() => setToggleDropdown(!toggleDropdown)}
 							className=' black_btn'>
-							Sign in with
+							Sign in
 						</button>
 						<span className='absolute top-16'>
 							{providers &&
@@ -127,15 +126,15 @@ const Nav = () => {
 						)}
 					</div>
 				) : (
-					<div className='flex flex-col items-center justify-center'>
+					<div className='flex flex-col items-center justify-center bg-white'>
 						<button
-							onClick={() => setToggleDropdown(!toggleDropdown)}
+							onClick={() => setToggleSignIn(!toggleSignIn)}
 							className=' black_btn'>
-							Sign in with
+							Sign in
 						</button>
 						<div className='absolute top-12'>
 							{providers &&
-								toggleDropdown &&
+								toggleSignIn &&
 								Object.values(providers).map((provider) => (
 									<button
 										type='button'

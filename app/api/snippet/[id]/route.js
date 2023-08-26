@@ -22,7 +22,7 @@ export const PATCH = async (request, { params }) => {
         await connectToDB();
 
         // Find the existing code snippet by ID
-        const existingCodeSnippet = await CodeSnippet.findById(params.id);
+        const existingCodeSnippet = await CodeSnippet.findByIdAndUpdate(params.id);
 
         if (!existingCodeSnippet) {
             return new Response("Code snippet not found", { status: 404 });
@@ -33,7 +33,6 @@ export const PATCH = async (request, { params }) => {
         existingCodeSnippet.tag = tag;
         existingCodeSnippet.title = title;
         existingCodeSnippet.description = description;
-
         await existingCodeSnippet.save();
 
         return new Response("Successfully updated the code snippet", { status: 200 });

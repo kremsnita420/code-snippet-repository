@@ -5,7 +5,7 @@ const Home = () => (
 		<h1 className='text-center head_text'>
 			Discover & Share
 			<br />
-			<span className='text-center orange_gradient'>
+			<span className='text-center blue_gradient'>
 				{'<'}code snippets{'/>'}
 			</span>
 		</h1>
