@@ -89,7 +89,7 @@ const CodeSnippetCard = ({
 						disabled={post.whoLiked.includes(user)}
 						onClick={handleAddLike}
 						className={`flex items-center justify-center ${
-							likedList ? 'cursor-default' : 'cursor-pointer'
+							post.whoLiked.includes(user) ? 'cursor-default' : 'cursor-pointer'
 						} mx-auto`}>
 						Like
 						<Image
